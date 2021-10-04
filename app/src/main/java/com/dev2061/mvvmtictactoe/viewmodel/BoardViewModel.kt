@@ -11,6 +11,8 @@ class BoardViewModel : ViewModel() {
     lateinit var squares: ObservableArrayMap<String, Player>
     lateinit var board: Board
 
+    fun getWinner() = board.winner
+
     fun startGame() {
         squares = ObservableArrayMap()
         board = Board()
@@ -21,7 +23,10 @@ class BoardViewModel : ViewModel() {
             board.squares[row][column] = Square(board.currentPlayer)
             val appendedString = appendString(row, column)
             squares[appendedString] = board.currentPlayer
-            board.changePlayer()
+
+            if (!board.checkEndGame()) {
+                board.changePlayer()
+            }
         }
     }
 }

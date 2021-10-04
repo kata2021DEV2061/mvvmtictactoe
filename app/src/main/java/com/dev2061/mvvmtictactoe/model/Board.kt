@@ -1,16 +1,31 @@
 package com.dev2061.mvvmtictactoe.model
 
+import androidx.lifecycle.MutableLiveData
+
 class Board {
 
+    var winner = MutableLiveData<Player>()
     var squares = Array<Array<Square?>>(BOARD_SIZE) { arrayOfNulls(size = BOARD_SIZE) }
     var currentPlayer: Player? = Player.CROSS
 
-    fun checkWinner() = checkIfSquaresIdenticalInColumn() || checkIfSquaresIdenticalInRow() || checkIfSquaresIdenticalDiagonal()
+    fun checkEndGame(): Boolean {
+        if (checkIfSquaresIdenticalInColumn() || checkIfSquaresIdenticalInRow() || checkIfSquaresIdenticalDiagonal()) {
+            winner.value = currentPlayer
+            return true
+        }
+
+        if (areAllSquaresFilledIn()) {
+            winner.value = Player.NA
+            return true
+        }
+        return false
+    }
+
 
     fun changePlayer() {
         when (currentPlayer) {
             Player.CROSS -> currentPlayer = Player.NOUGHT
-            Player.NOUGHT -> currentPlayer = Player.CROSS
+            else -> currentPlayer = Player.CROSS
         }
     }
 
@@ -44,6 +59,8 @@ class Board {
                     return false
         return true
     }
+
+    fun areAllSquaresFilledIn() = squares.all { it.all { it != null } }
 
     companion object {
         private const val BOARD_SIZE = 3

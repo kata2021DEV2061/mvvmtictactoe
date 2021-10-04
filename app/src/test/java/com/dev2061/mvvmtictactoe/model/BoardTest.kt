@@ -1,13 +1,19 @@
 package com.dev2061.mvvmtictactoe.model
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
 class BoardTest {
 
     lateinit var board: Board
+
+    @Rule
+    @JvmField
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Before
     fun setup() {
@@ -79,7 +85,7 @@ class BoardTest {
         board.squares[1][1] = square
         board.squares[1][2] = square
         //Act
-        val actualResult = board.checkWinner()
+        val actualResult = board.checkEndGame()
         //Assert
         Assert.assertTrue(actualResult)
     }
@@ -92,7 +98,7 @@ class BoardTest {
         board.squares[1][2] = square
         board.squares[2][2] = square
         //Act
-        val actualResult = board.checkWinner()
+        val actualResult = board.checkEndGame()
         //Assert
         Assert.assertTrue(actualResult)
     }
@@ -105,7 +111,25 @@ class BoardTest {
         board.squares[1][1] = square
         board.squares[2][0] = square
         //Act
-        val actualResult = board.checkWinner()
+        val actualResult = board.checkEndGame()
+        //Assert
+        Assert.assertTrue(actualResult)
+    }
+
+    @Test
+    fun Verify_AllSquaresFilled() {
+        //Arrange
+        board.squares[0][0] = Square(Player.CROSS)
+        board.squares[0][1] = Square(Player.NOUGHT)
+        board.squares[0][2] = Square(Player.CROSS)
+        board.squares[1][0] = Square(Player.NOUGHT)
+        board.squares[1][1] = Square(Player.CROSS)
+        board.squares[1][2] = Square(Player.NOUGHT)
+        board.squares[2][0] = Square(Player.CROSS)
+        board.squares[2][1] = Square(Player.NOUGHT)
+        board.squares[2][2] = Square(Player.CROSS)
+        //Act
+        val actualResult = board.areAllSquaresFilledIn()
         //Assert
         Assert.assertTrue(actualResult)
     }
