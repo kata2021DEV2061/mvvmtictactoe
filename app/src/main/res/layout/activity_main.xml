@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.dev2061.mvvmtictactoe.viewmodel.BoardViewModel" />
+    </data>
 
     <GridLayout
         android:id="@+id/grid_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_gravity="center"
         android:columnCount="3"
         android:rowCount="3">
@@ -16,47 +18,65 @@
         <TextView
             android:id="@+id/s00"
             style="@style/SquareTextView"
-            android:background="@drawable/s00" />
+            android:background="@drawable/s00"
+            android:onClick="@{() -> vm.onBoardSquareClicked(0,0)}"
+            android:text='@{vm.squares["00"]}'/>
 
         <TextView
             android:id="@+id/s01"
             style="@style/SquareTextView"
-            android:background="@drawable/s01" />
+            android:background="@drawable/s01"
+            android:onClick="@{() -> vm.onBoardSquareClicked(0,1)}"
+            android:text='@{vm.squares["01"]}'/>
 
         <TextView
             android:id="@+id/s02"
             style="@style/SquareTextView"
-            android:background="@drawable/s02" />
+            android:background="@drawable/s02"
+            android:onClick="@{() -> vm.onBoardSquareClicked(0,2)}"
+            android:text='@{vm.squares["02"]}'/>
 
         <TextView
             android:id="@+id/s10"
             style="@style/SquareTextView"
-            android:background="@drawable/s10" />
+            android:background="@drawable/s10"
+            android:onClick="@{() -> vm.onBoardSquareClicked(1,0)}"
+            android:text='@{vm.squares["10"]}'/>
 
         <TextView
             android:id="@+id/s11"
             style="@style/SquareTextView"
-            android:background="@drawable/s11" />
+            android:background="@drawable/s11"
+            android:onClick="@{() -> vm.onBoardSquareClicked(1,1)}"
+            android:text='@{vm.squares["11"]}'/>
 
         <TextView
             android:id="@+id/s12"
             style="@style/SquareTextView"
-            android:background="@drawable/s12" />
+            android:background="@drawable/s12"
+            android:onClick="@{() -> vm.onBoardSquareClicked(1,2)}"
+            android:text='@{vm.squares["12"]}'/>
 
         <TextView
             android:id="@+id/s20"
             style="@style/SquareTextView"
-            android:background="@drawable/s20" />
+            android:background="@drawable/s20"
+            android:onClick="@{() -> vm.onBoardSquareClicked(2,0)}"
+            android:text='@{vm.squares["20"]}'/>
 
         <TextView
             android:id="@+id/s21"
             style="@style/SquareTextView"
-            android:background="@drawable/s21" />
+            android:background="@drawable/s21"
+            android:onClick="@{() -> vm.onBoardSquareClicked(2,1)}"
+            android:text='@{vm.squares["21"]}'/>
 
         <TextView
             android:id="@+id/s22"
             style="@style/SquareTextView"
-            android:background="@drawable/s22" />
+            android:background="@drawable/s22"
+            android:onClick="@{() -> vm.onBoardSquareClicked(2,2)}"
+            android:text='@{vm.squares["22"]}'/>
 
     </GridLayout>
-</RelativeLayout>
+</layout>

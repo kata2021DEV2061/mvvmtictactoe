@@ -23,11 +23,11 @@ class BoardTest {
     @Test
     fun Verify_whenChangePlayer_OtherSymbolIsBeingReturned() {
         //Arrange
-        board.currentPlayer = Player.CROSS
+        board.currentPlayer = Player.X
         //Act
         board.changePlayer()
         //Assert
-        assertEquals(Player.NOUGHT, board.currentPlayer)
+        assertEquals(Player.O, board.currentPlayer)
     }
 
     @Test
@@ -35,13 +35,13 @@ class BoardTest {
         //Arrange
         //Act
         //Assert
-        assertEquals(Player.CROSS, board.currentPlayer)
+        assertEquals(Player.X, board.currentPlayer)
     }
 
     @Test
     fun Verify_VerticalSquares_WhenAllTheSame() {
         //Arrange
-        val square = Square(Player.CROSS)
+        val square = Square(Player.X)
         board.squares[0][1] = square
         board.squares[1][1] = square
         board.squares[2][1] = square
@@ -54,7 +54,7 @@ class BoardTest {
     @Test
     fun Verify_HorizontalSquares_WhenAllTheSame() {
         //Arrange
-        val square = Square(Player.CROSS)
+        val square = Square(Player.X)
         board.squares[0][0] = square
         board.squares[0][1] = square
         board.squares[0][2] = square
@@ -67,7 +67,7 @@ class BoardTest {
     @Test
     fun Verify_DiagonalSquares_WhenAllTheSame() {
         //Arrange
-        val square = Square(Player.CROSS)
+        val square = Square(Player.X)
         board.squares[0][0] = square
         board.squares[1][1] = square
         board.squares[2][2] = square
@@ -80,7 +80,7 @@ class BoardTest {
     @Test
     fun Verify_HorizontalWinner() {
         //Arrange
-        val square = Square(Player.CROSS)
+        val square = Square(Player.X)
         board.squares[1][0] = square
         board.squares[1][1] = square
         board.squares[1][2] = square
@@ -93,7 +93,7 @@ class BoardTest {
     @Test
     fun Verify_VerticalWinner() {
         //Arrange
-        val square = Square(Player.CROSS)
+        val square = Square(Player.X)
         board.squares[0][2] = square
         board.squares[1][2] = square
         board.squares[2][2] = square
@@ -106,7 +106,7 @@ class BoardTest {
     @Test
     fun Verify_DiagonalWinner() {
         //Arrange
-        val square = Square(Player.CROSS)
+        val square = Square(Player.X)
         board.squares[0][2] = square
         board.squares[1][1] = square
         board.squares[2][0] = square
@@ -119,15 +119,15 @@ class BoardTest {
     @Test
     fun Verify_AllSquaresFilled() {
         //Arrange
-        board.squares[0][0] = Square(Player.CROSS)
-        board.squares[0][1] = Square(Player.NOUGHT)
-        board.squares[0][2] = Square(Player.CROSS)
-        board.squares[1][0] = Square(Player.NOUGHT)
-        board.squares[1][1] = Square(Player.CROSS)
-        board.squares[1][2] = Square(Player.NOUGHT)
-        board.squares[2][0] = Square(Player.CROSS)
-        board.squares[2][1] = Square(Player.NOUGHT)
-        board.squares[2][2] = Square(Player.CROSS)
+        board.squares[0][0] = Square(Player.X)
+        board.squares[0][1] = Square(Player.O)
+        board.squares[0][2] = Square(Player.X)
+        board.squares[1][0] = Square(Player.O)
+        board.squares[1][1] = Square(Player.X)
+        board.squares[1][2] = Square(Player.O)
+        board.squares[2][0] = Square(Player.X)
+        board.squares[2][1] = Square(Player.O)
+        board.squares[2][2] = Square(Player.X)
         //Act
         val actualResult = board.areAllSquaresFilledIn()
         //Assert

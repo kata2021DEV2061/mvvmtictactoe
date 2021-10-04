@@ -30,7 +30,7 @@ class BoardViewModelTest {
         vm.onBoardSquareClicked(0, 0)
         vm.onBoardSquareClicked(1, 0)
         //Assert
-        Assert.assertEquals(Player.CROSS, vm.squares["10"])
+        Assert.assertEquals(Player.O.name, vm.squares["10"])
     }
 
     @Test
@@ -40,7 +40,7 @@ class BoardViewModelTest {
         //Act
         vm.onBoardSquareClicked(0, 1)
         //Assert
-        Assert.assertEquals(Player.CROSS, vm.squares["01"])
+        Assert.assertEquals(Player.X.name, vm.squares["01"])
     }
 
     @Test
@@ -51,7 +51,7 @@ class BoardViewModelTest {
         vm.onBoardSquareClicked(2, 2)
         vm.onBoardSquareClicked(2, 2)
         //Assert
-        Assert.assertEquals(Player.CROSS, vm.squares["22"])
+        Assert.assertEquals(Player.X.name, vm.squares["22"])
     }
 
     @Test
@@ -63,7 +63,7 @@ class BoardViewModelTest {
         vm.onBoardSquareClicked(0, 2)
         vm.onBoardSquareClicked(1, 0)
         vm.getWinner()
-        assertEquals(Player.CROSS, vm.board.winner.value)
+        assertEquals(Player.O.name, vm.board.winner.value.toString())
     }
 
 }

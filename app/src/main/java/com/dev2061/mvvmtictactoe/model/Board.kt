@@ -6,7 +6,7 @@ class Board {
 
     var winner = MutableLiveData<Player>()
     var squares = Array<Array<Square?>>(BOARD_SIZE) { arrayOfNulls(size = BOARD_SIZE) }
-    var currentPlayer: Player? = Player.CROSS
+    var currentPlayer: Player? = Player.X
 
     fun checkEndGame(): Boolean {
         if (checkIfSquaresIdenticalInColumn() || checkIfSquaresIdenticalInRow() || checkIfSquaresIdenticalDiagonal()) {
@@ -23,10 +23,7 @@ class Board {
 
 
     fun changePlayer() {
-        when (currentPlayer) {
-            Player.CROSS -> currentPlayer = Player.NOUGHT
-            else -> currentPlayer = Player.CROSS
-        }
+        currentPlayer = if (currentPlayer == Player.X) Player.O else Player.X
     }
 
     fun checkIfSquaresIdenticalInColumn(): Boolean {
@@ -50,15 +47,8 @@ class Board {
                 checkIfSquaresIdentical(squares[0][2], squares[1][1], squares[2][0])
     }
 
-
-    private fun checkIfSquaresIdentical(vararg squares: Square?): Boolean {
-        val square = squares[0]
-        for (i in 1 until squares.size)
-            if (square == null || square != squares[i])
-                if (square != squares[i])
-                    return false
-        return true
-    }
+    private fun checkIfSquaresIdentical(vararg squares: Square?) =
+        (1 until squares.size).none { squares[0] == null || squares[0] != squares[it] }
 
     fun areAllSquaresFilledIn() = squares.all { it.all { it != null } }
 

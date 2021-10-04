@@ -8,7 +8,7 @@ import com.dev2061.mvvmtictactoe.model.Square
 
 class BoardViewModel : ViewModel() {
 
-    lateinit var squares: ObservableArrayMap<String, Player>
+    lateinit var squares: ObservableArrayMap<String, String>
     lateinit var board: Board
 
     fun getWinner() = board.winner
@@ -22,7 +22,7 @@ class BoardViewModel : ViewModel() {
         if (null == board.squares[row][column]) {
             board.squares[row][column] = Square(board.currentPlayer)
             val appendedString = appendString(row, column)
-            squares[appendedString] = board.currentPlayer
+            squares[appendedString] = board.currentPlayer?.name
 
             if (!board.checkEndGame()) {
                 board.changePlayer()
