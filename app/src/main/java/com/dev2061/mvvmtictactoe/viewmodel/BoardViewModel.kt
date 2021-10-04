@@ -4,6 +4,7 @@ import androidx.databinding.ObservableArrayMap
 import androidx.lifecycle.ViewModel
 import com.dev2061.mvvmtictactoe.model.Board
 import com.dev2061.mvvmtictactoe.model.Player
+import com.dev2061.mvvmtictactoe.model.Square
 
 class BoardViewModel : ViewModel() {
 
@@ -16,9 +17,12 @@ class BoardViewModel : ViewModel() {
     }
 
     fun onBoardSquareClicked(row: Int, column: Int) {
-        val appendedString = appendString(row, column)
-        squares[appendedString] = board.currentPlayer
-        board.changePlayer()
+        if (null == board.squares[row][column]) {
+            board.squares[row][column] = Square(board.currentPlayer)
+            val appendedString = appendString(row, column)
+            squares[appendedString] = board.currentPlayer
+            board.changePlayer()
+        }
     }
 }
 
