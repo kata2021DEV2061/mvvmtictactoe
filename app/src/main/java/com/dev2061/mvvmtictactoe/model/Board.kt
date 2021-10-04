@@ -5,6 +5,8 @@ class Board {
     var squares = Array<Array<Square?>>(BOARD_SIZE) { arrayOfNulls(size = BOARD_SIZE) }
     var currentPlayer: Player? = Player.CROSS
 
+    fun checkWinner() = checkIfSquaresIdenticalInColumn() || checkIfSquaresIdenticalInRow() || checkIfSquaresIdenticalDiagonal()
+
     fun changePlayer() {
         when (currentPlayer) {
             Player.CROSS -> currentPlayer = Player.NOUGHT
